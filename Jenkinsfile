@@ -24,6 +24,23 @@ pipeline{
             }
         }
         }
+     stage('deploy to artifactory')
+     {
+     steps{
+     
+     rtUpload (
+    serverId: 'Jenkins_JFrog',
+    spec: '''{
+          "files": [
+            {
+              "pattern": "target/*.jar",
+              "target": "JFrog_pipeline"
+            }
+         ]
+    }''',
+ 
+ )
+     }}
   }
  }
     
